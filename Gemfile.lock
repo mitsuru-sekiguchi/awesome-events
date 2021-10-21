@@ -93,6 +93,14 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    elasticsearch (7.15.0)
+      elasticsearch-api (= 7.15.0)
+      elasticsearch-transport (= 7.15.0)
+    elasticsearch-api (7.15.0)
+      multi_json
+    elasticsearch-transport (7.15.0)
+      faraday (~> 1)
+      multi_json
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -235,6 +243,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    searchkick (4.3.1)
+      activemodel (>= 5)
+      elasticsearch (>= 6)
+      hashie
     selenium-webdriver (4.0.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -301,6 +313,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails-i18n (~> 6.0.0)
   sass-rails (>= 6)
+  searchkick (~> 4.3.0)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
