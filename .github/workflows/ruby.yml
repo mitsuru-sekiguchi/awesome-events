@@ -31,4 +31,5 @@ jobs:
         bin/rails db:migrate
         bin/yarn install
         bin/rails test
+        bin/rails system:test
         bin/rails test:system
