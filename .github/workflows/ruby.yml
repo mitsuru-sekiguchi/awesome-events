@@ -30,5 +30,6 @@ jobs:
         bin/rails db:create
         bin/rails db:migrate
         bin/yarn install
+        bin/rails elasticsearch
         bin/rails test
         bin/rails test:system
