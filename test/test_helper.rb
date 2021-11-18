@@ -5,6 +5,8 @@ require 'rails/test_help'
 require 'minitest/mock'
 require 'simplecov'
 SimpleCov.start 'rails'
+require 'coveralls'
+Coveralls.wear!('rails')
 
 require_relative '../config/environment'
 
