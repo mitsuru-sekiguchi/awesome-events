@@ -139,8 +139,8 @@ GEM
       activesupport (>= 4.0.1)
       hamlit (>= 1.2.0)
       railties (>= 4.0.1)
-    hashie (4.1.0)
-    i18n (1.8.10)
+    hashie (5.0.0)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
@@ -168,6 +168,8 @@ GEM
     multipart-post (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -245,7 +247,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.3.1)
+    searchkick (4.5.2)
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie
@@ -296,6 +298,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   active_storage_validations (~> 0.8.8)
@@ -315,7 +318,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails-i18n (~> 6.0.0)
   sass-rails (>= 6)
-  searchkick (~> 4.3.0)
+  searchkick (~> 4.5.2)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
