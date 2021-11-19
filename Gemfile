@@ -41,6 +41,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'brakeman'
+  gem 'rack-mini-profiler', require: false
 end
 
 group :test do
@@ -49,6 +54,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'simplecov', require: false, group: :test
+  gem 'coveralls', require: false, group: :test
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -62,3 +69,4 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'active_storage_validations', '~> 0.8.8'
 gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 gem 'searchkick', '~> 4.3.0'
+gem 'skylight'
