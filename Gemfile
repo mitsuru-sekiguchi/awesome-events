@@ -45,6 +45,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'brakeman'
+  gem 'rack-mini-profiler', require: false
 end
 
 group :test do
@@ -68,3 +69,4 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'active_storage_validations', '~> 0.8.8'
 gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 gem 'searchkick', '~> 4.3.0'
+gem 'skylight'
