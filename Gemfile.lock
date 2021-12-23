@@ -94,12 +94,12 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    elasticsearch (7.15.0)
-      elasticsearch-api (= 7.15.0)
-      elasticsearch-transport (= 7.15.0)
-    elasticsearch-api (7.15.0)
+    elasticsearch (7.13.3)
+      elasticsearch-api (= 7.13.3)
+      elasticsearch-transport (= 7.13.3)
+    elasticsearch-api (7.13.3)
       multi_json
-    elasticsearch-transport (7.15.0)
+    elasticsearch-transport (7.13.3)
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
@@ -139,8 +139,8 @@ GEM
       activesupport (>= 4.0.1)
       hamlit (>= 1.2.0)
       railties (>= 4.0.1)
-    hashie (4.1.0)
-    i18n (1.8.10)
+    hashie (5.0.0)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
@@ -161,13 +161,15 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    minitest (5.14.4)
+    minitest (5.15.0)
     msgpack (1.4.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -245,9 +247,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.3.1)
+    searchkick (4.6.3)
       activemodel (>= 5)
-      elasticsearch (>= 6)
+      elasticsearch (>= 6, < 7.14)
       hashie
     selenium-webdriver (4.0.3)
       childprocess (>= 0.5, < 5.0)
@@ -296,6 +298,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   active_storage_validations (~> 0.8.8)
@@ -315,7 +318,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails-i18n (~> 6.0.0)
   sass-rails (>= 6)
-  searchkick (~> 4.3.0)
+  searchkick (~> 4.6.3)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
