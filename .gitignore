@@ -41,4 +41,3 @@ yarn-debug.log*
 .yarn-integrity
 
 /config/initializers/omniauth.rb
-/config/credentials.yml.enc
