@@ -109,12 +109,12 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
-    elasticsearch (7.10.1)
-      elasticsearch-api (= 7.10.1)
-      elasticsearch-transport (= 7.10.1)
-    elasticsearch-api (7.10.1)
+    elasticsearch (7.13.0)
+      elasticsearch-api (= 7.13.0)
+      elasticsearch-transport (= 7.13.0)
+    elasticsearch-api (7.13.0)
       multi_json
-    elasticsearch-transport (7.10.1)
+    elasticsearch-transport (7.13.0)
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
@@ -382,7 +382,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   coveralls
   dotenv-rails
-  elasticsearch (= 7.10.1)
+  elasticsearch (= 7.13.0)
   factory_bot_rails
   hamlit-rails (~> 0.2.3)
   image_processing (~> 1.2)
