@@ -19,8 +19,6 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Elasticsearch::Model.client = Elasticsearch::Client.new(host: ENV['SEARCHBOX_URL'], http: { port: 443, scheme: 'https' })
-
 module AwesomeEvents
   class Application < Rails::Application
     config.load_defaults 6.0
