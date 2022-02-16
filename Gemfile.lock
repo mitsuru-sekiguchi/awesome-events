@@ -382,7 +382,6 @@ DEPENDENCIES
   capybara (>= 2.15)
   coveralls
   dotenv-rails
-  elasticsearch (= 7.13.0)
   factory_bot_rails
   hamlit-rails (~> 0.2.3)
   image_processing (~> 1.2)
