@@ -3,7 +3,7 @@ cluster:
 node:
   name: mynode
 network:
-  host: localhost
+  host: curl -X GET "http://localhost:9200"
 path:
   data: /usr/local/var/lib/elasticsearch/
   logs: /usr/local/var/log/elasticsearch/
