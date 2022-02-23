@@ -22,6 +22,8 @@
           - else
             %li.nav-item
               = link_to "Githubでログイン", "/auth/github", class: "nav-link", method: :post
+            %li.nav-item
+              = link_to "LINEでログイン", "/auth/line", class: "nav-link", method: :post
     .container
       - if flash.notice
         .alert.alert-success
