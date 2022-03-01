@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'users/index'
+  end
+  get 'users/list'
+  get 'users/show'
+  get 'users/edit'
   root 'welcome#index'
   get "/auth/:provider/callback" => "sessions#create"
   delete "/logout" => "sessions#destroy", as: :logout
