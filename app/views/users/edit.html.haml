@@ -1,3 +1,25 @@
 .layouts__application
   = render partial: 'shared/header'
-%h1 ユーザー編集
+
+  - now =  Time.zone.now
+
+%h1 ユーザー情報編集
+
+%br
+
+= form_with(model: @event, class: "form-horizontal") do |f|
+  #errors
+  .form-group
+    = f.label :ニックネーム
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :メールアドレス
+    = f.text_field :place, class: "form-control"
+  .form-group
+    = f.label :自己紹介
+    = f.text_area :content, class: "form-control", row: 10
+
+.col-4
+
+  = link_to "更新する", "#", class: "btn btn-primary btn-lg btn-block"
+  = link_to "キャンセル", users_list_path, class: "btn btn-secondary btn-lg btn-block"
