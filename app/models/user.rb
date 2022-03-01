@@ -18,6 +18,10 @@ class User < ApplicationRecord
     end
   end
 
+  def events
+    return Event.where(owner_id: self.id)
+  end
+
   private
 
   def check_all_events_finished
