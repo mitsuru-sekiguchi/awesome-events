@@ -27,11 +27,11 @@ class User < ApplicationRecord
   def check_all_events_finished
     now = Time.zone.now
     if created_events.where(":now < end_at", now: now).exists?
-      errors[:base] << "公開中の未終了イベントが存在します。"
+      errors[:base] << "公開中の未終了イベントが存在します"
     end
 
     if participating_events.where(":now < end_at", now: now).exists?
-      errors[:base] << "未終了の参加イベントが存在します。"
+      errors[:base] << "未終了の参加イベントが存在します"
     end
 
     throw(:abort) unless errors.empty?
