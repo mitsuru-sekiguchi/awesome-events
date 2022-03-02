@@ -7,10 +7,19 @@
 .row
   .col-8
     .card.mb-2
-      %h5.card-header ユーザー名
+      %h5.card-header ニックネーム
+      .card-body
+        %h5= @user.user_information.nickname
+    .card.mb-2
+      %h5.card-header 自己紹介
+      .card-body
+        %p= @user.user_information.content
+    .card.mb-2
+      %h5.card-header Github
       .card-body
         =image_tag @user.image_url, width:50, height: 50
-        %h5= @user.name
+        =link_to("https://github.com/#{(@user.name)}", class: "card-link") do
+          = "@#{@user.name}"
     .card.mb-2
       %h5.card-header ユーザーのイベント一覧
       -@user.events.each do |event|

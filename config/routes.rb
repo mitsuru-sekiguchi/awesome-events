@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     get 'users/index'
+    get 'users/destroy'
   end
   get 'users/list'
   root 'welcome#index'

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :tickets, dependent: :nullify
   has_many :participating_events, through: :tickets, source: :event
 
+  has_one :user_information
+
   def self.find_or_create_from_auth_hash!(auth_hash)
     provider = auth_hash[:provider]
     uid = auth_hash[:uid]
