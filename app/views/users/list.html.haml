@@ -8,7 +8,7 @@
   - @users.each do |user|
     = link_to(user, class: "list-group-item list-group-item-action") do
       = image_tag user.image_url, width: 50, height: 50
-      = user.user_information.nickname
+      = user.name
 %br
 .col-4
   = link_to "TOPへ戻る", root_path, class: "btn btn-secondary btn-lg btn-block"
