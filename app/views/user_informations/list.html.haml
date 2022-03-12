@@ -1,0 +1,17 @@
+.layouts__application
+  = render partial: 'shared/header'
+.container
+  %h1 ユーザー一覧
+
+  %br
+
+  %ul.list-group
+    - @userinfos.each do |userinfo|
+      = link_to(userinfo, class: "list-group-item list-group-item-action") do
+        = image_tag userinfo.user.image_url, width: 50, height: 50
+        = userinfo.display_name
+        = "(" + userinfo.display_name_eng + ")"
+  %br
+  .col-4
+    = link_to "TOPへ戻る", root_path, class: "btn btn-secondary btn-lg btn-block"
+.container

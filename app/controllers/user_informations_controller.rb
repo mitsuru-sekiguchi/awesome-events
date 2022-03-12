@@ -1,5 +1,6 @@
 class UserInformationsController < ApplicationController
   def list
+    @userinfos = UserInformation.all
   end
 
   def new
