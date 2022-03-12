@@ -17,6 +17,7 @@ class UserInformationsController < ApplicationController
   end
 
   def show
+    @userinfo = UserInformation.find(params[:id])
   end
 
   def edit

@@ -1,0 +1,53 @@
+.layouts__application
+  = render partial: 'shared/header'
+.container
+  %h1.mt-2 ユーザー詳細
+
+  %br
+
+  .row
+    .col-8
+      .card.mb-2
+        %h5.card-header 表示名
+        .card-body
+          %p= @userinfo.display_name + "(" + @userinfo.display_name_eng + ")"
+      .card.mb-2
+        %h5.card-header 会社名
+        .card-body
+          %p= @userinfo.company
+      .card.mb-2
+        %h5.card-header 生年月日
+        .card-body
+          %p= @userinfo.birthday
+      .card.mb-2
+        %h5.card-header メールアドレス
+        .card-body
+          %p= @userinfo.mail_address
+      .card.mb-2
+        %h5.card-header 役職
+        .card-body
+          %p= @userinfo.position
+      .card.mb-2
+        %h5.card-header プロフィール
+        .card-body
+          %p= @userinfo.profile
+      .card.mb-2
+        %h5.card-header Github
+        .card-body
+          =image_tag @userinfo.user.image_url, width:50, height: 50
+          =link_to("https://github.com/#{(@userinfo.user.name)}", class: "card-link") do
+            = "@#{@userinfo.user.name}"
+      .card.mb-2
+        %h5.card-header ユーザーのイベント一覧
+        -@userinfo.user.events.each do |event|
+          .card-body
+            = link_to(event, class: "card-link") do
+              %h5= event.name
+
+
+  %br
+  .col-4
+    = link_to "ユーザー情報を編集する", edit_user_information_path(@userinfo.user), class: "btn btn-info btn-lg btn-block"
+    = link_to "ユーザー一覧へ戻る", list_user_informations_path, class: "btn btn-success btn-lg btn-block"
+    = link_to "TOPへ戻る", root_path, class: "btn btn-secondary btn-lg btn-block"
+.container
