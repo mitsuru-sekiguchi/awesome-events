@@ -4,10 +4,15 @@ class UserInformationsController < ApplicationController
 
   def new
     @userinfo = UserInformation.new
-    @userinfo.build_user
   end
 
   def create
+    @userinfo = UserInformation.new(userinfo_params)
+    if @userinfo.save
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -19,4 +24,9 @@ class UserInformationsController < ApplicationController
   def update
   end
 
+  private
+
+  def userinfo_params
+    params.require(:user_information).permit(:display_name, :display_name_eng, :company, :birthday, :mail_address, :position, :profile, :user_account_id).merge(user_id: current_user.id)
+  end
 end
