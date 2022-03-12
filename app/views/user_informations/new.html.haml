@@ -8,26 +8,26 @@
   = form_with(model: @userinfo, class: "form-horizontal") do |f|
     #errors
     .form-group
-      = f.label :display_name
+      = f.label :表示名
       = f.text_field :display_name, class: "form-control"
     .form-group
-      = f.label :display_name_eng
+      = f.label :表示名（英語）
       = f.text_field :display_name_eng, class: "form-control"
     .form-group
-      = f.label :company
-      = f.text_field  :company, class: "form-control"
+      = f.label :会社名
+      = f.text_field  :company, class: "form-control", :placeholder => "※任意"
     .form-group
-      = f.label :birthday
+      = f.label :生年月日
       = f.date_field  :birthday, class: "form-control"
     .form-group
-      = f.label :mail_address
+      = f.label :メールアドレス
       = f.email_field  :mail_address, class: "form-control"
     .form-group
-      = f.label :position
-      = f.text_field  :position, class: "form-control"
+      = f.label :役職
+      = f.text_field  :position, class: "form-control", :placeholder => "※任意"
     .form-group
-      = f.label :profile
-      = f.text_field  :profile, class: "form-control"
+      = f.label :プロフィール
+      = f.text_area  :profile, class: "form-control", :placeholder => "※任意"
     = f.submit class: "btn btn-primary"
 
     = link_to "キャンセル", root_path, class: "btn btn-secondary"
