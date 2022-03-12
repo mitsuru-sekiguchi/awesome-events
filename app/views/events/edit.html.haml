@@ -1,40 +1,39 @@
 .layouts__application
   = render partial: 'shared/header'
-
   - now =  Time.zone.now
+.container
+  %h1.mt-2 イベント情報編集
 
-%h1.mt-2 イベント情報編集
-
-= form_with(model: @event, class: "form-horizontal") do |f|
-  #errors
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-  .form-group
-    = f.label :place
-    = f.text_field :place, class: "form-control"
-  .form-group
-    = f.label :start_at
-    %div
-      = f.datetime_select :start_at, start_year: now.year, end_year: now.year + 1
-  .form-group
-    = f.label :end_at
-    %div
-      = f.datetime_select :end_at, start_year: now.year, end_year: now.year + 1
-  .form-group
-    = f.label :content
-    = f.text_area :content, class: "form-control", row: 10
-  .form-group
-    = f.label :image
+  = form_with(model: @event, class: "form-horizontal") do |f|
+    #errors
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :place
+      = f.text_field :place, class: "form-control"
+    .form-group
+      = f.label :start_at
+      %div
+        = f.datetime_select :start_at, start_year: now.year, end_year: now.year + 1
+    .form-group
+      = f.label :end_at
+      %div
+        = f.datetime_select :end_at, start_year: now.year, end_year: now.year + 1
+    .form-group
+      = f.label :content
+      = f.text_area :content, class: "form-control", row: 10
+    .form-group
+      = f.label :image
+      - if @event.image.attached? && @event.image.blob&.persisted?
+        = image_tag(@event.image.variant(resize_to_fit: [200, 200]), class: 'img-thumbnail d-block mb-3')
+      = f.file_field :image, class: "form-control-file"
     - if @event.image.attached? && @event.image.blob&.persisted?
-      = image_tag(@event.image.variant(resize_to_fit: [200, 200]), class: 'img-thumbnail d-block mb-3')
-    = f.file_field :image, class: "form-control-file"
-  - if @event.image.attached? && @event.image.blob&.persisted?
-    .checkbox
-      %label
-        = f.check_box :remove_image
-        画像を削除する
-  = f.submit class: "btn btn-primary"
+      .checkbox
+        %label
+          = f.check_box :remove_image
+          画像を削除する
+    = f.submit class: "btn btn-primary"
 
-  = link_to "キャンセル", root_path, class: "btn btn-secondary"
-
+    = link_to "キャンセル", root_path, class: "btn btn-secondary"
+.container

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create"
   delete "/logout" => "sessions#destroy", as: :logout
 
-  resources :user_informations, only: [:new, :show, :edit, :update] do
+  resources :user_informations, only: [:new, :show, :create, :edit, :update] do
     get :list, on: :collection
   end
 

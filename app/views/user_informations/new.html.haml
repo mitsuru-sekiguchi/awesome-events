@@ -1,0 +1,34 @@
+.layouts__application
+  = render partial: 'shared/header'
+.container
+  %h1.mt-2 ユーザー情報の追加
+
+  %br
+
+  = form_with(model: @userinfo, class: "form-horizontal") do |f|
+    #errors
+    .form-group
+      = f.label :display_name
+      = f.text_field :display_name, class: "form-control"
+    .form-group
+      = f.label :display_name_eng
+      = f.text_field :display_name_eng, class: "form-control"
+    .form-group
+      = f.label :depart
+      = f.text_field  :depart, class: "form-control"
+    .form-group
+      = f.label :birthday
+      = f.date_field  :birthday, class: "form-control"
+    .form-group
+      = f.label :mail_address
+      = f.email_field  :mail_address, class: "form-control"
+    .form-group
+      = f.label :position
+      = f.text_field  :position, class: "form-control"
+    .form-group
+      = f.label :profile
+      = f.text_field  :profile, class: "form-control"
+    = f.submit class: "btn btn-primary"
+
+    = link_to "キャンセル", root_path, class: "btn btn-secondary"
+.container
