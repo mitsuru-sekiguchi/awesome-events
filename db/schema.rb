@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_12_053854) do
+ActiveRecord::Schema.define(version: 2022_03_12_054916) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_053854) do
   end
 
   create_table "user_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "display_name"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_053854) do
     t.integer "delete_flag"
     t.integer "permission_level"
     t.string "mail_address"
-    t.index ["user_id"], name: "index_user_informations_on_user_id"
+    t.index ["user_account_id"], name: "index_user_informations_on_user_account_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -86,5 +86,5 @@ ActiveRecord::Schema.define(version: 2022_03_12_053854) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "tickets", "events"
-  add_foreign_key "user_informations", "users"
+  add_foreign_key "user_informations", "users", column: "user_account_id"
 end
