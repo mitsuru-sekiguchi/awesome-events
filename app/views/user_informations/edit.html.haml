@@ -1,0 +1,35 @@
+.layouts__application
+  = render partial: 'shared/header'
+  - now =  Time.zone.now
+.container
+  %h1.mt-2 ユーザー情報の追加
+
+  %br
+
+  = form_with(model: @userinfo, class: "form-horizontal") do |f|
+    #errors
+    .form-group
+      = f.label :表示名
+      = f.text_field :display_name, class: "form-control"
+    .form-group
+      = f.label :表示名（英語）
+      = f.text_field :display_name_eng, class: "form-control"
+    .form-group
+      = f.label :会社名
+      = f.text_field  :company, class: "form-control", :placeholder => "※任意"
+    .form-group
+      = f.label :生年月日
+      = f.text_field :birthday, class: "form-control"
+    .form-group
+      = f.label :メールアドレス
+      = f.email_field  :mail_address, class: "form-control"
+    .form-group
+      = f.label :役職
+      = f.text_field  :position, class: "form-control", :placeholder => "※任意"
+    .form-group
+      = f.label :プロフィール
+      = f.text_area  :profile, class: "form-control", :placeholder => "※任意"
+    = f.submit class: "btn btn-primary"
+
+    = link_to "キャンセル", root_path, class: "btn btn-secondary"
+.container

@@ -1,4 +1,6 @@
 class UserInformationsController < ApplicationController
+  before_action :set_user_information, only: [:show, :edit, :update]
+
   def list
     @userinfos = UserInformation.all
   end
@@ -17,18 +19,26 @@ class UserInformationsController < ApplicationController
   end
 
   def show
-    @userinfo = UserInformation.find(params[:id])
   end
 
   def edit
   end
 
   def update
+    if @userinfo.update!(userinfo_params)
+      redirect_to list_user_informations_path
+    else
+      render 'edit'
+    end
   end
 
   private
 
   def userinfo_params
     params.require(:user_information).permit(:display_name, :display_name_eng, :company, :birthday, :mail_address, :position, :profile, :user_account_id).merge(user_id: current_user.id)
+  end
+
+  def set_user_information
+    @userinfo = UserInformation.find(params[:id])
   end
 end
