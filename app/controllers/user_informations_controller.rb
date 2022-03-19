@@ -12,9 +12,7 @@ class UserInformationsController < ApplicationController
   def create
     @userinfo = UserInformation.new(userinfo_params)
     if @userinfo.save
-      redirect_to root_path
-    else
-      render 'new'
+      redirect_to root_path, notice: "作成しました"
     end
   end
 
@@ -25,10 +23,8 @@ class UserInformationsController < ApplicationController
   end
 
   def update
-    if @userinfo.update!(userinfo_params)
-      redirect_to list_user_informations_path
-    else
-      render 'edit'
+    if @userinfo.update(userinfo_params)
+      redirect_to @userinfo, notice: "更新しました"
     end
   end
 
@@ -39,6 +35,6 @@ class UserInformationsController < ApplicationController
   end
 
   def set_user_information
-    @userinfo = UserInformation.find(params[:id])
+    @userinfo = UserInformation.find_by(params[:id])
   end
 end

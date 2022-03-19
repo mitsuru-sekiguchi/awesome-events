@@ -13,3 +13,11 @@ ja:
         image: 画像
       ticket:
         comment: コメント
+      user_information:
+        display_name: 表示名
+        display_name_eng: 表示名（英語）
+        company: 会社名
+        birthday: 生年月日
+        mail_address: メールアドレス
+        position: 役職
+        profile: プロフィール

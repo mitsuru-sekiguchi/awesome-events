@@ -2,3 +2,9 @@
   .container
     = link_to "AwesomeEvents", root_path, class: "navbar-brand mr-auto"
 .container
+  - if flash.notice
+    .alert.alert-success
+      = flash.notice
+  - if flash.alert
+    .alert.alert-danger
+      = flash.alert
