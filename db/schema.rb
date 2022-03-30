@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_12_074330) do
+ActiveRecord::Schema.define(version: 2022_03_29_011848) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_074330) do
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "delete_flag"
+    t.integer "delete_flag", default: 0
     t.index ["owner_id"], name: "index_events_on_owner_id"
   end
 
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_074330) do
     t.string "birthday"
     t.string "position"
     t.text "profile"
-    t.integer "delete_flag"
+    t.integer "delete_flag", default: 0
     t.integer "permission_level"
     t.string "mail_address"
     t.index ["user_id"], name: "index_user_informations_on_user_id"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2022_03_12_074330) do
     t.string "image_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "login_times"
-    t.integer "delete_flag"
+    t.integer "login_times", default: 0
+    t.integer "delete_flag", default: 0
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
