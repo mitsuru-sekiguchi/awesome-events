@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate, only: :show
+  before_action :authenticate_userinfo, only: [:new, :create, :edit, :update, :destroy]
+  before_action :delete_flag_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:edit, :update, :destroy]
 
   def show
     @event = Event.find(params[:id])
@@ -20,19 +23,16 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = current_user.created_events.find(params[:id])
   end
 
   def update
-    @event = current_user.created_events.find_by(params[:id])
     if @event.update(event_params)
       redirect_to @event, notice: "更新しました"
     end
   end
 
   def destroy
-    @event = current_user.created_events.find(params[:id])
-    @event.destroy!
+    @event.update(delete_flag: 1)
     redirect_to root_path, notice: "削除しました"
   end
 
@@ -42,6 +42,10 @@ class EventsController < ApplicationController
     params.require(:event).permit(
       :name, :place, :image, :remove_image, :content, :start_at, :end_at
     )
+  end
+
+  def set_event
+    @event = current_user.created_events.find(params[:id])
   end
 end
 

@@ -14,9 +14,10 @@
       = f.submit "検索", class: "btn btn-primary"
   %ul.list-group
     - @events.each do |event|
-      = link_to(event, class: "list-group-item list-group-item-action") do
-        %h5.list-group-item-heading= event.name
-        %p.mb-1= "#{l(event.start_at, format: :long)} - #{l(event.end_at, format: :long)}"
+      - if(event.delete_flag === 0)
+        = link_to(event, class: "list-group-item list-group-item-action") do
+          %h5.list-group-item-heading= event.name
+          %p.mb-1= "#{l(event.start_at, format: :long)} - #{l(event.end_at, format: :long)}"
 
   = paginate @events
 .container

@@ -40,14 +40,17 @@
       .card.mb-2
         %h5.card-header ユーザーのイベント一覧
         -@userinfo.user.events.each do |event|
-          .card-body
-            = link_to(event, class: "card-link") do
-              %h5= event.name
+          - if (event.delete_flag === 0)
+            .card-body
+              = link_to(event, class: "card-link") do
+                %h5= event.name
 
 
   %br
   .col-4
-    = link_to "ユーザー情報を編集する", edit_user_information_path(@userinfo.user), class: "btn btn-info btn-lg btn-block"
-    = link_to "ユーザー一覧へ戻る", list_user_informations_path, class: "btn btn-success btn-lg btn-block"
-    = link_to "TOPへ戻る", root_path, class: "btn btn-secondary btn-lg btn-block"
+    - if current_user.id == @userinfo.user_id
+      = link_to "ユーザー情報を編集する", edit_user_information_path(@userinfo), class: "btn btn-info btn-lg btn-block"
+    - if logged_in?
+      = link_to "ユーザー一覧へ戻る", list_user_informations_path, class: "btn btn-success btn-lg btn-block"
+      = link_to "TOPへ戻る", root_path, class: "btn btn-secondary btn-lg btn-block"
 .container

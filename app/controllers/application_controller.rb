@@ -25,7 +25,24 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    return if logged_in?
-    redirect_to root_path, alert: "ログインして下さい"
+    if not logged_in?
+      redirect_to root_path, alert: "ログインして下さい"
+    elsif (current_user.delete_flag === 1)
+        redirect_to root_path, alert: "削除済みのユーザーです"
+    end
+  end
+
+  def authenticate_userinfo
+    userinfo = UserInformation.find_by(user_id: current_user.id)
+    if current_user && userinfo.blank?
+      redirect_to new_user_information_path, alert: "ユーザー登録を行なって下さい"
+    end
+  end
+
+  def delete_flag_event
+    event = Event.find(params[:id])
+    if (event.delete_flag === 1)
+      redirect_to root_path, alert: "削除済みのイベントです"
+    end
   end
 end

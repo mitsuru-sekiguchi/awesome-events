@@ -31,10 +31,10 @@ class UserInformationsController < ApplicationController
   private
 
   def userinfo_params
-    params.require(:user_information).permit(:display_name, :display_name_eng, :company, :birthday, :mail_address, :position, :profile, :user_account_id).merge(user_id: current_user.id)
+    params.require(:user_information).permit(:display_name, :display_name_eng, :company, :birthday, :mail_address, :position, :profile).merge(user_id: current_user.id)
   end
 
   def set_user_information
-    @userinfo = UserInformation.find_by(params[:id])
+    @userinfo = UserInformation.find(params[:id])
   end
 end
