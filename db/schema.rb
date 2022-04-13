@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_29_011848) do
+ActiveRecord::Schema.define(version: 2022_04_13_001536) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 2022_03_29_011848) do
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "owner_id"
     t.string "name", null: false
     t.string "place", null: false
     t.datetime "start_at", null: false
@@ -43,7 +42,6 @@ ActiveRecord::Schema.define(version: 2022_03_29_011848) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "delete_flag", default: 0
-    t.index ["owner_id"], name: "index_events_on_owner_id"
   end
 
   create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
