@@ -2,8 +2,9 @@ class Event < ApplicationRecord
   searchkick language: "japanese"
   has_one_attached :image, dependent: false
   has_many :tickets, dependent: :destroy
-  belongs_to :owner, class_name: "User"
+  belongs_to :owner, class_name: "UserInformation"
   attr_accessor :remove_image
+  has_many :event_users
 
   before_save :remove_image_if_user_accept
 

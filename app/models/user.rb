@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   before_update :check_all_events_finished
 
-  has_many :created_events, class_name: "Event", foreign_key: "owner_id", dependent: :nullify
+  has_many :created_events, class_name: "EventUser", foreign_key: "owner_id", dependent: :nullify
+  has_many :event_users
 
   has_many :tickets, dependent: :nullify
   has_many :participating_events, through: :tickets, source: :event
