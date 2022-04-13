@@ -6,7 +6,7 @@ class CreateEventUsers < ActiveRecord::Migration[6.0]
       t.bigint :owner_id
 
       t.timestamps
-      add_index :event_users, :owner_id
     end
+    add_index :event_users, :owner_id
   end
 end
