@@ -6,7 +6,7 @@
     .col-8
       .card.md-2
         - if @event.image.attached?
-          = image_tag @event.image, class: "card-img-top"
+          = image_tag rails_blob_path(@event.image), class: "card-img-top"
   .card.md-2
     %h5.card-header イベント内容
     .card-body
@@ -23,14 +23,13 @@
   .card.mb-2
     %h5.card-header 主催者
     .card-body
-      - if @event.owner
-        = link_to(url_for_github(@event.owner), class: "card-link") do
-          = image_tag @event.owner.image_url, width: 50, height: 50
-          = "@#{@event.owner.name}"
+      %p.card-text
+      - if @userinfo.delete_flag === 0
+        =  @userinfo.display_name
       - else
         退会したユーザーです
   .col-4
-    - if @event.created_by?(current_user)
+    - if current_user.id === @event_user.owner_id
       = link_to "イベントを編集する", edit_event_path(@event), class: "btn btn-info btn-lg btn-block"
       = link_to "イベントを削除する", event_path(@event), class: "btn btn-danger btn-lg btn-block", method: :delete, data: { confirm: "本当に削除しますか？" }
     - if @ticket

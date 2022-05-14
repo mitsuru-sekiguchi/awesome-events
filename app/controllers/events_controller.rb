@@ -6,28 +6,40 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @event_user = EventUser.find_by(params[:id])
+    @userinfo = UserInformation.find_by(params[:id])
     @ticket = current_user && current_user.tickets.find_by(event: @event)
     @tickets = @event.tickets.includes(:user).order(:created_at)
   end
 
   def new
-    @event = current_user.created_events.build
+    #EventUserFormクラスのインスタンスの呼び出し
+    @event_user_form = EventUserForm.new
   end
 
   def create
-    @event = current_user.created_events.build(event_params)
-
-    if @event.save
-      redirect_to @event, notice: "作成しました"
+    @event_user_form = EventUserForm.new(event_params)
+    if current_user
+      if @event_user_form.valid?
+        @event_user_form.save
+        redirect_to root_path, notice: "作成しました"
+      else
+        render :create
+      end
     end
   end
 
   def edit
+    @event_user_form = EventUserForm.new(event: @event)
   end
 
   def update
-    if @event.update(event_params)
+    @event_user_form = EventUserForm.new(event_params, event: @event)
+    if @event_user_form.valid?
+      @event_user_form.update_event
       redirect_to @event, notice: "更新しました"
+    else
+      render :update
     end
   end
 
@@ -39,13 +51,23 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(
-      :name, :place, :image, :remove_image, :content, :start_at, :end_at
-    )
+    params.require(:event_user_form).permit(
+      :name, :place, :image, :remove_image, :content, :start_at, :end_at,
+      :user_id, :owner_id
+    ).merge(owner_id: current_user.id)
   end
 
+  # 自身のIDに対応するイベントを取得するメソッド
   def set_event
-    @event = current_user.created_events.find(params[:id])
+    if current_user
+      event_id = EventUser.where(owner_id: current_user.id, event_id: params[:id]).first
+      @event = Event.find(event_id.event_id)
+      if @event.nil?
+        redirect_to event_path, alert: "権限がありません"
+      end
+    else
+      redirect_to root_path
+    end
   end
 end
 

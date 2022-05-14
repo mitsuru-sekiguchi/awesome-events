@@ -36,5 +36,6 @@ class UserInformationsController < ApplicationController
 
   def set_user_information
     @userinfo = UserInformation.find(params[:id])
+    binding.pry
   end
 end

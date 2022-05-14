@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   before_update :check_all_events_finished
 
-  has_many :created_events, class_name: "EventUser", foreign_key: "owner_id", dependent: :nullify
-  has_many :event_users
+  has_many :event_users, dependent: :destroy
+  has_many :events, through: :event_users
+
+  has_many :created_events, class_name: "EventUser", foreign_key: "owner_id"
 
   has_many :tickets, dependent: :nullify
   has_many :participating_events, through: :tickets, source: :event
@@ -22,14 +24,16 @@ class User < ApplicationRecord
   end
 
   def events
-    return Event.where(owner_id: self.id)
+    return EventUser.where(owner_id: self.id)
   end
 
   private
 
   def check_all_events_finished
     now = Time.zone.now
-    if created_events.where(":now < end_at", now: now).exists?
+    events = Event.all
+    events.build.event_users
+    if events.where(":now < end_at", now: now).exists?
       errors[:base] << "公開中の未終了イベントが存在します"
     end
 
