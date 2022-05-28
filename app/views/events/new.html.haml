@@ -28,7 +28,8 @@
       = f.file_field :image, class: "form-control-file"
     .form-group
       = f.label :"主催者を選択"
-      = f.collection_select :user_id, UserInformation.all, :id, :display_name, {include_blank: "----"}
+      = javascript_pack_tag 'owner'
+      = f.select :user_id, UserInformation.all.map{|o| [o.display_name, o.id]}, {include_hidden: false}, {class:'owner form-control', multiple: true}
     = f.submit class: "btn btn btn-primary"
 
     = link_to "キャンセル", root_path, class: "btn btn-secondary"
