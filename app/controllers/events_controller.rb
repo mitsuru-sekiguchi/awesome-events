@@ -19,6 +19,7 @@ class EventsController < ApplicationController
 
   def create
     @event_user_form = EventUserForm.new(event_params)
+    @event_user = EventUser.new
     if current_user
       if @event_user_form.valid?
         @event_user_form.save
