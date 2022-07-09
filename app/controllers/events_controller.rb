@@ -19,6 +19,7 @@ class EventsController < ApplicationController
 
   def create
     @event_user_form = EventUserForm.new(event_params)
+    @event_user = EventUser.new
     if current_user
       if @event_user_form.valid?
         @event_user_form.save
@@ -52,8 +53,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event_user_form).permit(
-      :name, :place, :image, :remove_image, :content, :start_at, :end_at,
-      :user_id, :owner_id
+      :name, :place, :image, :remove_image, :content, :start_at, :end_at, :owner_id, user_inoformation_id: []
     ).merge(owner_id: current_user.id)
   end
 

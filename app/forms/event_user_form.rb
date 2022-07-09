@@ -3,7 +3,7 @@ class EventUserForm
   include ActiveRecord::AttributeAssignment #datetime_select用
 
   #使用したい属性を読み書きできるようにしてform_withの引数として利用する
-  attr_accessor :name, :place, :content, :start_at, :end_at, :image, :remove_image, :user_id, :event_id, :owner_id
+  attr_accessor :name, :place, :content, :start_at, :end_at, :image, :remove_image, :user_information_id, :event_id, :owner_id
 
   #バリデーションの設定(モデルに記述したものと合わせる)
   with_options presence: true do
@@ -12,7 +12,7 @@ class EventUserForm
     validates :content, length: { maximum: 2000 }
     validates :start_at
     validates :end_at
-    validates :user_id
+    validates :user_information_id
   end
 
 
@@ -37,7 +37,7 @@ class EventUserForm
   def save
     ActiveRecord::Base.transaction do
       event = Event.create(name: name, place: place, content: content, start_at: start_at, end_at: end_at, image: image)
-      EventUser.create(event_id: event.id, user_id: user_id, owner_id: owner_id)
+      EventUser.create(event_id: event.id, user_information_id: user_information_id, owner_id: owner_id)
     end
     # rescue...例外処理、通常処理→例外発生時の処理
     rescue ActiveRecord::RecordInvalid
@@ -47,7 +47,7 @@ class EventUserForm
   def update_event
     ActiveRecord::Base.transaction do
       event.update(name: name, place: place, content: content, start_at: start_at, end_at: end_at, image: image)
-      EventUser.where(event_id: event.id).update(user_id: user_id, owner_id: owner_id)
+      EventUser.where(event_id: event.id).update(user_information_id: user_information_id, owner_id: owner_id)
     end
     rescue ActiveRecord::RecordInvalid
       false
@@ -65,7 +65,7 @@ class EventUserForm
       start_at: event.start_at,
       end_at: event.end_at,
       image: event.image,
-      user_id: event_user.user_id,
+      user_information_id: event_user.user_information_id,
       event_id: event_user.event_id,
       owner_id: event_user.owner_id
     }

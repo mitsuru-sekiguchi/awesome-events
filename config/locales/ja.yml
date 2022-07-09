@@ -20,4 +20,4 @@ ja:
         end_at: 終了時間
         content: 内容
         image: 画像
-        user_id: 主催者
+        user_information_id: 主催者
