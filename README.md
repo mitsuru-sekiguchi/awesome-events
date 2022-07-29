@@ -18,6 +18,7 @@
 
 下記のgithub画面からOAuthを作成   
 https://github.com/settings/developers    
+
     [New OAuth App]を押下  
     入力項目 
     ・Application name: awesome events    
