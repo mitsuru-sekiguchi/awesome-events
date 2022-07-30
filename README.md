@@ -1,24 +1,33 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 環境構築
 
-Things you may want to cover:
+### elasticsearchの構築手順   
 
-* Ruby version
+    $ brew tap elastic/tap  
+    $ brew install elastic/tap/elasticsearch-full 
+    $ elasticsearch-plugin install analysis-kuromoji  
+    $ bin/rails r Event.reindex 
+    $ elasticsearch 
 
-* System dependencies
+### Githubでログイン    
 
-* Configuration
+手動でOAuthを作成してないと下記のエラーが発生する   
 
-* Database creation
+    ActionController::RoutingError (No route matches [POST] "/auth/github"):  
 
-* Database initialization
+下記のgithub画面からOAuthを作成   
+https://github.com/settings/developers    
 
-* How to run the test suite
+    [New OAuth App]を押下  
+    入力項目 
+    ・Application name: awesome events    
+    ・Homepage URL: http://localhost:3000/    
+    ・Application description: web application for awesome events   
+    ・Authorization callback URL: http://localhost:3000/auth/github/callback    
 
-* Services (job queues, cache servers, search engines, etc.)
+### アプリ起動    
+ターミナルを２つ用意
 
-* Deployment instructions
-
-* ...
+    $ bundle exec rails c  
+    $ elasticsearch  
