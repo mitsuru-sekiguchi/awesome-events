@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .layouts__application
   = render partial: 'shared/header_login'
 .container
@@ -18,6 +19,14 @@
         = link_to(event, class: "list-group-item list-group-item-action") do
           %h5.list-group-item-heading= event.name
           %p.mb-1= "#{l(event.start_at, format: :long)} - #{l(event.end_at, format: :long)}"
+=======
+%h1 イベント一覧
+%ul.list-group
+  - @events.each do |event|
+    = link_to(event, class: "list-group-item list-group-item-action") do
+      %h5.list-group-item-heading= event.name
+      %p.mb-1= "#{l(event.start_at, format: :long)} - #{l(event.end_at, format: :long)}"
+>>>>>>> parent of 98aa80d... Add a search view and function
 
   = paginate @events
 .container

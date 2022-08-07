@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-  searchkick language: "japanese"
   has_one_attached :image, dependent: false
   has_many :tickets, dependent: :destroy
 
@@ -21,6 +20,7 @@ class Event < ApplicationRecord
 
   private
 
+<<<<<<< HEAD
   def search_data
     {
       name: name,
@@ -31,6 +31,8 @@ class Event < ApplicationRecord
     }
   end
 
+=======
+>>>>>>> parent of 98aa80d... Add a search view and function
   def remove_image_if_user_accept
     self.image = nil if ActiveRecord::Type::Boolean.new.cast(remove_image)
   end
