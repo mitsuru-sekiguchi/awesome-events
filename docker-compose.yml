@@ -1,0 +1,41 @@
+version: "3"
+services:
+  mysql:
+    image: mysql/mysql-server:5.7
+    command: ["--bind-address=0.0.0.0"]
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    environment:
+      MYSQL_USERNAME: app
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: mysql
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app
+      - myrailsapp_bundle:/app/vendor/bundle
+      - myrailsapp_node_modules:/app/node-modules
+    depends_on:
+      - mysql
+    tty: true
+    stdin_open: true
+
+volumes:
+  mysql-data:
+    driver: local
+  myrailsapp_bundle:
+    driver: local
+  myrailsapp_node_modules:
+    driver: local
